@@ -6,6 +6,22 @@ class Vector:
     def __repr__(self):
         return f"Vector({self.data})"
     
+    def __getitem__(self, index):
+        return self.data[index]
+    
+    def __setitem__(self, index, value):
+        self.data[index] = value
+        return
+    
+    def __add__(self, other):
+        return self.add(other)
+
+    def __sub__(self, other):
+        return self.subtract(other)
+    
+    def __rmul__(self, other):
+        return self.scale(other)
+    
     def size(self):
         """Calculates and returns the size of the vector."""
         v = self.data
@@ -39,6 +55,25 @@ class Vector:
             a = v1[i]
             b = v2[i]
             result.append(a+b)
+        
+        return Vector(result)
+    
+    def subtract(self, vector2):
+        """ Calculates and returns the difference of given two vectors v1 and v2."""
+        v1 = self.data
+        v2 = vector2.data
+        # Check that the two vectors are of same size. 
+        n1 = self.size()
+        n2 = vector2.size()
+        
+        if n2 != n1:
+            raise ValueError("Error in computing vector subtraction as both vectors are not of same size.")
+
+        result = []
+        for i in range(n1):
+            a = v1[i]
+            b = v2[i]
+            result.append(a-b)
         
         return Vector(result)
     

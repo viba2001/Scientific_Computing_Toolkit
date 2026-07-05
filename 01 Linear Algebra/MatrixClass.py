@@ -8,6 +8,9 @@ class Matrix:
     def __repr__(self):
         return f"Matrix ({self.data})"
     
+    def __getitem__(self, index):
+        return self.data[index]
+    
     def shape(self):
         """Calculates and returns the shape of the matrix in [m,n]."""
         mat = self.data
@@ -76,6 +79,23 @@ class Matrix:
         else:
             raise IndexError("Column index out of bounds.")
         return Vector(result)
+    
+    def replace_row(self, ind, row):
+        """Replaces "ind" indexed row of a given matrix with input "row". """
+        mat = self.data
+        # Check if specified row is present in the matrix
+        m = self.rows()
+        result = []
+        if ind < m:
+            # Indexed row exists
+            for i in range(m):
+                if i == ind:
+                    result.append(row)
+                else:
+                    result.append(self.row(i).data)
+        else:
+            raise IndexError("Row index out of bounds.")
+        return Matrix(result)
     
     def transpose(self):
         """Create the transpose of the existing matrix"""
