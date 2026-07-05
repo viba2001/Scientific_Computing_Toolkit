@@ -17,7 +17,7 @@ def gaussian_elimination(A,b):
     """
     Nrow = A.rows()
     Ncol = A.cols()
-    Mat  = A.data
+    Mat  = A.data 
 
     # Step 1: Reduce the matrix to an upper matrix form 
     for i in range(Nrow):
